@@ -18,6 +18,6 @@ public class spawnmanager : MonoBehaviour
     }
     private void spawn()
     {
-        Instantiate(character[Random.Range(0,character.Length)]);
+        Instantiate(character[Random.Range(0,character.Length)],new Vector3 (Random.Range(-7.4f,7.4f),8),Quaternion.Euler(new Vector3(0,0,Random.Range(0, 360))));
     }
 }
