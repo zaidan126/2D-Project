@@ -8,10 +8,11 @@ public class object_fallingdown : MonoBehaviour
     public int speed;
     public ParticleSystem click_effects;
     public ParticleSystem bone_effects;
+    private Renderer ob_ject;
 
     void Start()
     {
-        
+        ob_ject = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -21,14 +22,17 @@ public class object_fallingdown : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        bone_effects.gameObject.SetActive(true);
-        bone_effects .Play();
-        Destroy(gameObject);
+        
+        bone_effects.Play();
+        ob_ject.enabled = false;
+       
     }
     private void OnMouseDown()
     {
-        click_effects.gameObject.SetActive(true);
-        click_effects .Play();
-        Destroy(gameObject);
+        
+
+        click_effects.Play();
+        ob_ject.enabled = false;
+        
     }
 }

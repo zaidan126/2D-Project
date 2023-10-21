@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  click_effects: {fileID: 8460667080445658518, guid: a3e2c3406e02f2c4ba86cfb1604277bd, type: 3}
-  bone_effects: {fileID: 5024009746357069192, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  click_effects: {fileID: 6926545068925868921, guid: cc1e447f5c8fcbb418449cee3a394fe2, type: 3}
+  bone_effects: {fileID: 6224503157798588440, guid: a794a9c0e020db54d83e93ac89388b34, type: 3}
 --- !u!50 &6102141207702422766
 Rigidbody2D:
   serializedVersion: 4
