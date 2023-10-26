@@ -20,19 +20,31 @@ public class object_fallingdown : MonoBehaviour
     {
         transform.Translate(Vector2.down*Time.deltaTime*speed);
     }
+    private bool clicked = false;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        bone_effects.Play();
-        ob_ject.enabled = false;
-       
+        if (collision.gameObject.CompareTag("bone"))
+        {
+            
+            if (!clicked)
+            {
+                gameObject.GetComponent<Renderer>().enabled = false;
+
+                bone_effects.Play();
+                if (!bone_effects.IsAlive())
+                {
+                    gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                }
+            }
+
+        }
     }
     private void OnMouseDown()
     {
-        
+        clicked = true;
+        gameObject.GetComponent<Renderer>().enabled = false;
 
         click_effects.Play();
-        ob_ject.enabled = false;
         
     }
 }
