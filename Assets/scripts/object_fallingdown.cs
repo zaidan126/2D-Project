@@ -12,29 +12,37 @@ public class object_fallingdown : MonoBehaviour
     private AudioSource player;
     public AudioClip click_sound;
     public AudioClip bone_sound;
+    private spawnmanager spawnmanager;
+    private BoxCollider2D boxCollider;
 
     void Start()
     {
         ob_ject = GetComponent<Renderer>();
         player = GetComponent<AudioSource>();
+        spawnmanager = GameObject.Find("spawn manager").GetComponent<spawnmanager>();
+        boxCollider = gameObject.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.down*Time.deltaTime*speed);
+        transform.Translate(Vector2.down * Time.deltaTime * speed);
     }
     private bool clicked = false;
+    private bool touch_bone = false;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("bone"))
         {
-            
+
             if (!clicked)
             {
+                touch_bone = true;
+                spawnmanager.update_score(-2);
                 gameObject.GetComponent<Renderer>().enabled = false;
                 player.PlayOneShot(bone_sound, 1);
                 bone_effects.Play();
+                boxCollider.enabled = false;
                 if (!bone_effects.IsAlive())
                 {
                     Destroy(gameObject);
@@ -45,14 +53,20 @@ public class object_fallingdown : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        clicked = true;
-        gameObject.GetComponent<Renderer>().enabled = false;
-        player.PlayOneShot(click_sound, 1);
-        click_effects.Play(); 
-        if (!click_effects.IsAlive())
+        if (!touch_bone)
         {
-            Destroy(gameObject);
-        }
+            spawnmanager.update_score(2);
+            clicked = true;
+            gameObject.GetComponent<Renderer>().enabled = false;
+            player.PlayOneShot(click_sound, 1);
+            click_effects.Play();
+            boxCollider.enabled = false;
+            if (!click_effects.IsAlive())
+            {
+                Destroy(gameObject);
+            }
 
+
+        }
     }
 }

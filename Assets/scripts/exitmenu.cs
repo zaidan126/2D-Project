@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class menuui : MonoBehaviour
+public class exitmenu : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -18,13 +16,9 @@ public class menuui : MonoBehaviour
     {
         
     }
-    public void play()
-    {
-        SceneManager.LoadScene(1);
-    }
     public void exit()
     {
-        EditorApplication.ExitPlaymode();
+       // EditorApplication.ExitPlaymode();
         Application.Quit();
     }
 }
